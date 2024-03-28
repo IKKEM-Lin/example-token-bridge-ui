@@ -9,7 +9,9 @@ import {
   selectNFTTargetChain,
   selectNFTTransferTx,
 } from "../../store/selectors";
-import { WAITING_FOR_WALLET_AND_CONF } from "../Transfer/WaitingForWalletMessage";
+
+export const WAITING_FOR_WALLET_AND_CONF =
+  "Waiting for wallet approval (likely in a popup) and confirmation...";
 
 const useStyles = makeStyles((theme) => ({
   message: {

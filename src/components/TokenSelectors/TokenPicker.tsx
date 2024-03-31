@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) =>
     },
     selectionButton: {
       maxWidth: "100%",
-      width: theme.breakpoints.values.sm,
+      // width: theme.breakpoints.values.sm,
     },
     tokenOverviewContainer: {
       display: "flex",
@@ -463,11 +463,12 @@ export default function TokenPicker({
         onClick={openDialog}
         disabled={disabled}
         variant="outlined"
-        startIcon={<KeyboardArrowDownIcon />}
+        // startIcon={<KeyboardArrowDownIcon />}
         className={classes.selectionButton}
       >
         {value ? (
-          <RenderOption account={value} />
+          // <RenderOption account={value} />
+          "Reselect"
         ) : (
           <Typography color="textSecondary">Select a token</Typography>
         )}
@@ -478,8 +479,14 @@ export default function TokenPicker({
   return (
     <>
       {dialog}
-      {value && nft ? <NFTViewer value={value} chainId={chainId} /> : null}
+      <div style={{display: "flex", justifyContent: "space-between"}}>
+        <div style={{maxWidth: "150px"}}>
+          {value && nft ? <NFTViewer value={value} chainId={chainId} /> : null}
+        </div>
+        <div>
       {selectionChip}
+        </div>
+      </div>
     </>
   );
 }

@@ -71,6 +71,7 @@ async function evm(
       chainId === CHAIN_ID_KLAYTN
         ? { gasPrice: (await signer.getGasPrice()).toString() }
         : {};
+    debugger;
     const receipt = await transferFromEth(
       getNFTBridgeAddressForChain(chainId),
       signer,
@@ -80,6 +81,7 @@ async function evm(
       recipientAddress,
       overrides
     );
+    debugger;
     dispatch(
       setTransferTx({ id: receipt.transactionHash, block: receipt.blockNumber })
     );

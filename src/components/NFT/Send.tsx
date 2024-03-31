@@ -39,19 +39,19 @@ function Send() {
     : statusMessage || error || undefined;
   return (
     <>
-      <StepDescription>
+      {/* <StepDescription>
         Transfer the NFT to the Wormhole Token Bridge.
       </StepDescription>
-      <KeyAndBalance chainId={sourceChain} />
+      <KeyAndBalance chainId={sourceChain} /> */}
       {isTerraChain(sourceChain) && (
         <TerraFeeDenomPicker disabled={disabled} chainId={sourceChain} />
       )}
-      <Alert severity="info" variant="outlined">
+      {/* <Alert severity="info" variant="outlined">
         This will initiate the transfer on {CHAINS_BY_ID[sourceChain].name} and
         wait for finalization. If you navigate away from this page before
         completing Step 4, you will have to perform the recovery workflow to
         complete the transfer.
-      </Alert>
+      </Alert> */}
       <ButtonWithLoader
         disabled={isDisabled}
         onClick={handleClick}

@@ -55,32 +55,23 @@ function Source() {
   }, [sourceChain]);
   return (
     <>
-      <StepDescription>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          Select an NFT to send through the Wormhole NFT Bridge.
-          <div style={{ flexGrow: 1 }} />
-          <div>
-            <Button
-              component={Link}
-              to="/nft-origin-verifier"
-              size="small"
-              variant="outlined"
-              startIcon={<VerifiedUser />}
-            >
-              NFT Origin Verifier
-            </Button>
-          </div>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div>
+          From
+      <KeyAndBalance chainId={sourceChain} />
         </div>
-      </StepDescription>
-      <ChainSelect
-        variant="outlined"
-        select
-        fullWidth
-        value={sourceChain}
-        onChange={handleSourceChange}
-        disabled={shouldLockFields}
-        chains={CHAINS_WITH_NFT_SUPPORT}
-      />
+        <div>
+          <ChainSelect
+            variant="outlined"
+            select
+            fullWidth
+            value={sourceChain}
+            onChange={handleSourceChange}
+            disabled={shouldLockFields}
+            chains={CHAINS_WITH_NFT_SUPPORT}
+          />
+        </div>
+      </div>
       {isEVMChain(sourceChain) ? (
         <Alert severity="info" variant="outlined">
           Only NFTs which implement ERC-721 are supported.
@@ -91,22 +82,23 @@ function Source() {
           Only NFTs with a supply of 1 are supported.
         </Alert>
       ) : null}
-      <KeyAndBalance chainId={sourceChain} />
+
       {isReady || uiAmountString ? (
         <div className={classes.transferField}>
           <TokenSelector disabled={shouldLockFields} nft={true} />
         </div>
       ) : null}
+
       <LowBalanceWarning chainId={sourceChain} />
       <ChainWarningMessage chainId={sourceChain} />
-      <ButtonWithLoader
+      {/* <ButtonWithLoader
         disabled={!isSourceComplete || isTransferDisabled}
         onClick={handleNextClick}
         showLoader={false}
         error={statusMessage || error}
       >
         Next
-      </ButtonWithLoader>
+      </ButtonWithLoader> */}
     </>
   );
 }

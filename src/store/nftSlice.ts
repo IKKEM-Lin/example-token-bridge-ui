@@ -14,6 +14,7 @@ import {
   receiveDataWrapper,
 } from "./helpers";
 import { ParsedTokenAccount, Transaction } from "./transferSlice";
+import { CHAIN_ID_SEPOLIA } from "@certusone/wormhole-sdk/lib/esm/utils/consts";
 
 const LAST_STEP = 3;
 
@@ -54,7 +55,7 @@ export interface NFTState {
 
 const initialState: NFTState = {
   activeStep: 0,
-  sourceChain: CHAIN_ID_SOLANA,
+  sourceChain: CHAIN_ID_SEPOLIA,
   isSourceAssetWormholeWrapped: false,
   sourceWalletAddress: undefined,
   sourceParsedTokenAccount: undefined,
@@ -62,7 +63,7 @@ const initialState: NFTState = {
   originChain: undefined,
   originAsset: undefined,
   originTokenId: undefined,
-  targetChain: CHAIN_ID_ETH,
+  targetChain: CHAIN_ID_SEPOLIA,
   targetAddressHex: undefined,
   targetAsset: getEmptyDataWrapper(),
   transferTx: undefined,

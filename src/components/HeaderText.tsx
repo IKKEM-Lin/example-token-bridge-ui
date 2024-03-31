@@ -38,14 +38,10 @@ export default function HeaderText({
         variant={small ? "h2" : "h1"}
         component="h1"
         className={clsx({ [classes.linearGradient]: !white })}
+        style={{textAlign: "left"}}
       >
         {children}
       </Typography>
-      {subtitle ? (
-        <Typography component="div" className={classes.subtitle}>
-          {subtitle}
-        </Typography>
-      ) : null}
     </div>
   );
 }

@@ -113,16 +113,8 @@ function App() {
         <Container maxWidth="md" style={{ paddingBottom: 24 }}>
           <HeaderText
             white
-            subtitle={
-              <>
-                <Typography>
-                  This is a developmental token bridge that tests transfers
-                  across chains for tokens and NFTs wrapped by Wormhole.
-                </Typography>
-              </>
-            }
           >
-            Token Bridge
+            BRIDGE
           </HeaderText>
         </Container>
       ) : null}
@@ -163,7 +155,7 @@ function App() {
       <div className={classes.gradientRight2}></div>
       <div className={classes.gradientLeft}></div>
       <div className={classes.gradientLeft2}></div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

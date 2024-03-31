@@ -18,6 +18,7 @@ import {
   selectNFTIsRedeeming,
   selectNFTIsSendComplete,
   selectNFTIsSending,
+  selectNFTIsTargetComplete,
 } from "../../store/selectors";
 import { CHAINS_WITH_NFT_SUPPORT } from "../../utils/consts";
 import Redeem from "./Redeem";
@@ -38,6 +39,7 @@ function NFT() {
   const isSendComplete = useSelector(selectNFTIsSendComplete);
   const isRedeeming = useSelector(selectNFTIsRedeeming);
   const isRedeemComplete = useSelector(selectNFTIsRedeemComplete);
+  const isTargetComplete = useSelector(selectNFTIsTargetComplete);
   const preventNavigation =
     (isSending || isSendComplete || isRedeeming) && !isRedeemComplete;
 
@@ -82,39 +84,45 @@ function NFT() {
     }
   }, [preventNavigation]);
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="md" style={{ display: "flex", gap: "40px" }}>
+      <div>{<SourcePreview />}</div>
       <Stepper activeStep={activeStep} orientation="vertical">
         <Step
           expanded={activeStep >= 0}
           disabled={preventNavigation || isRedeemComplete}
         >
-          <StepButton onClick={() => dispatch(setStep(0))} icon={null}>
+          {/* <StepButton onClick={() => dispatch(setStep(0))} icon={null}>
             1. Source
-          </StepButton>
+          </StepButton> */}
           <StepContent>
-            {activeStep === 0 ? <Source /> : <SourcePreview />}
+            {/* {activeStep === 0 ? <Source /> : <SourcePreview />} */}
+            {<Source />}
           </StepContent>
         </Step>
         <Step
-          expanded={activeStep >= 1}
+          expanded={activeStep >= 0}
           disabled={preventNavigation || isRedeemComplete || activeStep === 0}
         >
-          <StepButton onClick={() => dispatch(setStep(1))} icon={null}>
+          {/* <StepButton onClick={() => dispatch(setStep(1))} icon={null}>
             2. Target
-          </StepButton>
+          </StepButton> */}
           <StepContent>
-            {activeStep === 1 ? <Target /> : <TargetPreview />}
+            {/* {activeStep === 1 ? <Target /> : <TargetPreview />} */}
+            {<Target />}
+            {/* {<TargetPreview />} */}
           </StepContent>
         </Step>
-        <Step expanded={activeStep >= 2} disabled={isSendComplete}>
-          <StepButton disabled icon={null}>
+        <Step expanded={activeStep >= 0} disabled={isSendComplete}>
+          {/* <StepButton disabled icon={null}>
             3. Send NFT
-          </StepButton>
+          </StepButton> */}
           <StepContent>
-            {activeStep === 2 ? <Send /> : <SendPreview />}
+            {/* {activeStep === 2 ? <Send /> : <SendPreview />} */}
+            {isTargetComplete ? <Send /> : "Waiting"}
+            {/* {<SendPreview />} */}
           </StepContent>
         </Step>
-        <Step expanded={activeStep >= 3} completed={isRedeemComplete}>
+        {/* <Step expanded={activeStep >= 3} completed={isRedeemComplete}>
           <StepButton
             onClick={() => dispatch(setStep(3))}
             disabled={!isSendComplete || isRedeemComplete}
@@ -125,7 +133,7 @@ function NFT() {
           <StepContent>
             {isRedeemComplete ? <RedeemPreview /> : <Redeem />}
           </StepContent>
-        </Step>
+        </Step> */}
       </Stepper>
     </Container>
   );

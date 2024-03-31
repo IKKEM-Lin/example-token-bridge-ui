@@ -51,6 +51,7 @@ export interface NFTState {
   isRedeeming: boolean;
   redeemTx: Transaction | undefined;
   isRecovery: boolean;
+  walletSwithOn: boolean;
 }
 
 const initialState: NFTState = {
@@ -72,6 +73,7 @@ const initialState: NFTState = {
   isRedeeming: false,
   redeemTx: undefined,
   isRecovery: false,
+  walletSwithOn: true,
 };
 
 export const nftSlice = createSlice({
@@ -99,8 +101,8 @@ export const nftSlice = createSlice({
       state.originChain = undefined;
       state.originAsset = undefined;
       state.originTokenId = undefined;
-      if (state.targetChain === action.payload) {
-        state.targetChain = prevSourceChain;
+      if (state.targetChain === prevSourceChain) {
+        state.targetChain = action.payload;
       }
     },
     setSourceWormholeWrappedInfo: (
@@ -157,21 +159,21 @@ export const nftSlice = createSlice({
       state.sourceParsedTokenAccounts = receiveDataWrapper(action.payload);
     },
     setTargetChain: (state, action: PayloadAction<ChainId>) => {
-      const prevTargetChain = state.targetChain;
+      // const prevTargetChain = state.targetChain;
       state.targetChain = action.payload;
       state.targetAddressHex = undefined;
       // clear targetAsset so that components that fire before useFetchTargetAsset don't get stale data
       state.targetAsset = getEmptyDataWrapper();
-      if (state.sourceChain === action.payload) {
-        state.sourceChain = prevTargetChain;
-        state.activeStep = 0;
-        state.sourceParsedTokenAccount = undefined;
-        state.isSourceAssetWormholeWrapped = undefined;
-        state.originChain = undefined;
-        state.originAsset = undefined;
-        state.originTokenId = undefined;
-        state.sourceParsedTokenAccounts = getEmptyDataWrapper();
-      }
+      // if (state.sourceChain === action.payload) {
+      //   state.sourceChain = prevTargetChain;
+      //   state.activeStep = 0;
+      //   state.sourceParsedTokenAccount = undefined;
+      //   state.isSourceAssetWormholeWrapped = undefined;
+      //   state.originChain = undefined;
+      //   state.originAsset = undefined;
+      //   state.originTokenId = undefined;
+      //   state.sourceParsedTokenAccounts = getEmptyDataWrapper();
+      // }
     },
     setTargetAddressHex: (state, action: PayloadAction<string | undefined>) => {
       state.targetAddressHex = action.payload;
@@ -234,6 +236,9 @@ export const nftSlice = createSlice({
       state.activeStep = 3;
       state.isRecovery = true;
     },
+    setWalletSwitchOn: (state, action: PayloadAction<boolean>) => {
+      state.walletSwithOn = action.payload;
+    },
   },
 });
 
@@ -259,6 +264,7 @@ export const {
   setRedeemTx,
   reset,
   setRecoveryVaa,
+  setWalletSwitchOn,
 } = nftSlice.actions;
 
 export default nftSlice.reducer;

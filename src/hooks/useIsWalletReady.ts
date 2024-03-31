@@ -31,6 +31,8 @@ import {
   EVM_RPC_MAP,
   METAMASK_CHAIN_PARAMETERS,
 } from "../utils/metaMaskChainParameters";
+import { useSelector } from "react-redux";
+import { selectWalletSwithOn } from "../store/selectors";
 
 const createWalletStatus = (
   isReady: boolean,
@@ -46,7 +48,8 @@ const createWalletStatus = (
 
 function useIsWalletReady(
   chainId: ChainId,
-  enableNetworkAutoswitch: boolean = true
+  enableNetworkAutoswitch: boolean = true,
+  enable: boolean = true
 ): {
   isReady: boolean;
   statusMessage: string;
@@ -90,6 +93,7 @@ function useIsWalletReady(
   const seiAddress = seiAccounts.length ? seiAccounts[0].address : null;
   const hasSeiWallet = !!seiAddress;
   const { address: suiAddress } = useSuiWallet();
+  const walletSwithOn = useSelector(selectWalletSwithOn);
 
   const forceNetworkSwitch = useCallback(async () => {
     if (provider && correctEvmNetwork) {
@@ -107,6 +111,7 @@ function useIsWalletReady(
       }
 
       try {
+        console.log({correctEvmNetwork})
         await provider.send("wallet_switchEthereumChain", [
           { chainId: hexStripZeros(hexlify(correctEvmNetwork)) },
         ]);
@@ -130,6 +135,14 @@ function useIsWalletReady(
   }, [provider, correctEvmNetwork, chainId, connectType, disconnect]);
 
   return useMemo(() => {
+    if (!enable || !walletSwithOn) {
+      return createWalletStatus(
+        true,
+        undefined,
+        () => {},
+        undefined
+      );
+    }
     if (isTerraChain(chainId) && hasTerraWallet && terraWallet?.walletAddress) {
       // TODO: terraWallet does not update on wallet changes
       return createWalletStatus(

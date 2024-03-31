@@ -335,6 +335,7 @@ export default function TokenPicker({
         useTokenId ? tokenIdHolderString : undefined
       ).then(
         (result) => {
+          console.log({result})
           if (!cancelled) {
             setLocalLoading(false);
             if (result) {

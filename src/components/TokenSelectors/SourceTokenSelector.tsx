@@ -95,6 +95,7 @@ export const TokenSelector = (props: TokenSelectorProps) => {
     !isTerraChain(lookupChain) &&
     maps?.tokenAccounts?.error; //Terra & EVM chains can proceed because they have advanced mode
 
+  console.log({sourceParsedTokenAccount})
   const content = fatalError ? (
     <RefreshButtonWrapper callback={resetAccountWrapper}>
       <Typography>{fatalError}</Typography>

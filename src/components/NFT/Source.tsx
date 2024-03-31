@@ -2,11 +2,11 @@ import { CHAIN_ID_SOLANA, isEVMChain } from "@certusone/wormhole-sdk";
 import { Button, makeStyles } from "@material-ui/core";
 import { VerifiedUser } from "@material-ui/icons";
 import { Alert } from "@material-ui/lab";
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import useIsWalletReady from "../../hooks/useIsWalletReady";
-import { incrementStep, setSourceChain } from "../../store/nftSlice";
+import { incrementStep, setSourceChain, setWalletSwitchOn } from "../../store/nftSlice";
 import {
   selectNFTIsSourceComplete,
   selectNFTShouldLockFields,
@@ -39,11 +39,13 @@ function Source() {
   const uiAmountString = useSelector(selectNFTSourceBalanceString);
   const error = useSelector(selectNFTSourceError);
   const isSourceComplete = useSelector(selectNFTIsSourceComplete);
+  console.log({isSourceComplete})
   const shouldLockFields = useSelector(selectNFTShouldLockFields);
-  const { isReady, statusMessage } = useIsWalletReady(sourceChain);
+  const { isReady, statusMessage } = useIsWalletReady(sourceChain, !isSourceComplete);
   const handleSourceChange = useCallback(
     (event) => {
       dispatch(setSourceChain(event.target.value));
+      dispatch(setWalletSwitchOn(true))
     },
     [dispatch]
   );
@@ -53,6 +55,12 @@ function Source() {
   const isTransferDisabled = useMemo(() => {
     return getIsTransferDisabled(sourceChain, true);
   }, [sourceChain]);
+  useEffect(() => {
+    if (!isReady) {
+      return;
+    }
+    dispatch(setWalletSwitchOn(false))
+  }, [isReady])
   return (
     <>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>

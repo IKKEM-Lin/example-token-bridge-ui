@@ -8,12 +8,12 @@ import { makeStyles, TextField, Typography } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import { PublicKey } from "@solana/web3.js";
 import { BigNumber, ethers } from "ethers";
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useIsWalletReady from "../../hooks/useIsWalletReady";
 import useSyncTargetAddress from "../../hooks/useSyncTargetAddress";
 import { GasEstimateSummary } from "../../hooks/useTransactionFees";
-import { incrementStep, setTargetChain } from "../../store/nftSlice";
+import { incrementStep, setTargetChain, setWalletSwitchOn } from "../../store/nftSlice";
 import {
   selectNFTIsTargetComplete,
   selectNFTOriginAsset,
@@ -79,11 +79,12 @@ function Target() {
   const isTargetComplete = useSelector(selectNFTIsTargetComplete);
   const shouldLockFields = useSelector(selectNFTShouldLockFields);
   console.log({isTargetComplete})
-  const { statusMessage } = useIsWalletReady(targetChain, true, !isTargetComplete);
+  const { isReady, statusMessage } = useIsWalletReady(targetChain, true, !isTargetComplete);
   useSyncTargetAddress(!shouldLockFields, true);
   const handleTargetChange = useCallback(
     (event) => {
       dispatch(setTargetChain(event.target.value));
+      dispatch(setWalletSwitchOn(true))
     },
     [dispatch]
   );
@@ -93,6 +94,12 @@ function Target() {
   const isTransferDisabled = useMemo(() => {
     return getIsTransferDisabled(targetChain, false);
   }, [targetChain]);
+  useEffect(() => {
+    if (!isReady) {
+      return;
+    }
+    dispatch(setWalletSwitchOn(false))
+  }, [isReady])
   return (
     <>
       <div

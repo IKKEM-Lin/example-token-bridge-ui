@@ -46,6 +46,7 @@ export const selectAttestShouldLockFields = (state: RootState) =>
 
 export const selectNFTActiveStep = (state: RootState) => state.nft.activeStep;
 export const selectNFTSourceChain = (state: RootState) => state.nft.sourceChain;
+export const selectWalletSwithOn = (state: RootState) => state.nft.walletSwithOn;
 export const selectNFTSourceAsset = (state: RootState) => {
   return state.nft.sourceParsedTokenAccount?.mintKey || undefined;
 };

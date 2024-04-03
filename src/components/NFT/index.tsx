@@ -88,9 +88,9 @@ function NFT() {
           expanded={activeStep >= 0}
           disabled={preventNavigation || isRedeemComplete}
         >
-          <StepButton onClick={() => dispatch(setStep(0))} icon={null}>
+          {/* <StepButton onClick={() => dispatch(setStep(0))} icon={null}>
             1. Source
-          </StepButton>
+          </StepButton> */}
           <StepContent>
             {activeStep === 0 ? <Source /> : <SourcePreview />}
           </StepContent>
@@ -99,17 +99,17 @@ function NFT() {
           expanded={activeStep >= 1}
           disabled={preventNavigation || isRedeemComplete || activeStep === 0}
         >
-          <StepButton onClick={() => dispatch(setStep(1))} icon={null}>
+          {/* <StepButton onClick={() => dispatch(setStep(1))} icon={null}>
             2. Target
-          </StepButton>
+          </StepButton> */}
           <StepContent>
             {activeStep === 1 ? <Target /> : <TargetPreview />}
           </StepContent>
         </Step>
         <Step expanded={activeStep >= 2} disabled={isSendComplete}>
-          <StepButton disabled icon={null}>
+          {/* <StepButton disabled icon={null}>
             3. Send NFT
-          </StepButton>
+          </StepButton> */}
           <StepContent>
             {activeStep === 2 ? <Send /> : <SendPreview />}
           </StepContent>

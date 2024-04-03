@@ -296,11 +296,11 @@ function EthGasEstimateSummary({
       }}
     >
       <div style={{ display: "flex", alignItems: "center", marginRight: 32 }}>
-        <LocalGasStation fontSize="inherit" />
-        &nbsp;{estimate.currentGasPrice}
+        <LocalGasStation fontSize="inherit" />&nbsp; Est. Service Fees:
+        {/* &nbsp;{estimate.currentGasPrice} */}
       </div>
       <div>
-        Est. Fees: {estimate.lowEstimate} - {estimate.highEstimate}{" "}
+         {estimate.lowEstimate} - {estimate.highEstimate}{" "}
         {getDefaultNativeCurrencySymbol(chainId)}
         {priceQuote ? <div>{`($${lowUsd} - $${highUsd})`}</div> : null}
       </div>

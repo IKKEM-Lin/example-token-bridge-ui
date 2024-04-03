@@ -82,141 +82,141 @@ export interface ChainInfo {
 export const CHAINS: ChainInfo[] =
   CLUSTER === "testnet"
     ? [
-        {
-          id: CHAIN_ID_ACALA,
-          name: "Acala",
-          logo: acalaIcon,
-        },
-        {
-          id: CHAIN_ID_ALGORAND,
-          name: "Algorand",
-          logo: algorandIcon,
-        },
-        {
-          id: CHAIN_ID_APTOS,
-          name: "Aptos",
-          logo: aptosIcon,
-        },
+        // {
+        //   id: CHAIN_ID_ACALA,
+        //   name: "Acala",
+        //   logo: acalaIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_ALGORAND,
+        //   name: "Algorand",
+        //   logo: algorandIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_APTOS,
+        //   name: "Aptos",
+        //   logo: aptosIcon,
+        // },
         {
           id: CHAIN_ID_ARBITRUM,
           name: "Arbitrum",
           logo: arbitrumIcon,
         },
-        {
-          id: CHAIN_ID_AURORA,
-          name: "Aurora",
-          logo: auroraIcon,
-        },
+        // {
+        //   id: CHAIN_ID_AURORA,
+        //   name: "Aurora",
+        //   logo: auroraIcon,
+        // },
         {
           id: CHAIN_ID_AVAX,
           name: "Avalanche",
           logo: avaxIcon,
         },
-        {
-          id: CHAIN_ID_BASE,
-          name: "Base Goerli",
-          logo: baseIcon,
-        },
-        {
-          id: CHAIN_ID_BSC,
-          name: "Binance Smart Chain",
-          logo: bscIcon,
-        },
-        {
-          id: CHAIN_ID_CELO,
-          name: "Celo",
-          logo: celoIcon,
-        },
-        {
-          id: CHAIN_ID_ETH,
-          name: "Ethereum (Goerli)",
-          logo: ethIcon,
-        },
+        // {
+        //   id: CHAIN_ID_BASE,
+        //   name: "Base Goerli",
+        //   logo: baseIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_BSC,
+        //   name: "Binance Smart Chain",
+        //   logo: bscIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_CELO,
+        //   name: "Celo",
+        //   logo: celoIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_ETH,
+        //   name: "Ethereum (Goerli)",
+        //   logo: ethIcon,
+        // },
         {
           id: CHAIN_ID_SEPOLIA,
           name: "Ethereum (Sepolia)",
           logo: ethIcon,
         },
-        {
-          id: CHAIN_ID_FANTOM,
-          name: "Fantom",
-          logo: fantomIcon,
-        },
-        {
-          id: CHAIN_ID_INJECTIVE,
-          name: "Injective",
-          logo: injectiveIcon,
-        },
-        {
-          id: CHAIN_ID_KARURA,
-          name: "Karura",
-          logo: karuraIcon,
-        },
-        {
-          id: CHAIN_ID_KLAYTN,
-          name: "Klaytn",
-          logo: klaytnIcon,
-        },
-        {
-          id: CHAIN_ID_MOONBEAM,
-          name: "Moonbeam",
-          logo: moonbeamIcon,
-        },
-        {
-          id: CHAIN_ID_NEAR,
-          name: "Near",
-          logo: nearIcon,
-        },
-        {
-          id: CHAIN_ID_NEON,
-          name: "Neon",
-          logo: neonIcon,
-        },
-        {
-          id: CHAIN_ID_OASIS,
-          name: "Oasis",
-          logo: oasisIcon,
-        },
-        {
-          id: CHAIN_ID_OPTIMISM,
-          name: "Optimism (Goerli)",
-          logo: optimismIcon,
-        },
-        {
-          id: CHAIN_ID_POLYGON,
-          name: "Polygon",
-          logo: polygonIcon,
-        },
-        {
-          id: CHAIN_ID_SEI,
-          name: "Sei",
-          logo: seiIcon,
-        },
-        {
-          id: CHAIN_ID_SOLANA,
-          name: "Solana",
-          logo: solanaIcon,
-        },
-        {
-          id: CHAIN_ID_SUI,
-          name: "Sui",
-          logo: suiIcon,
-        },
-        {
-          id: CHAIN_ID_TERRA,
-          name: "Terra Classic",
-          logo: terraIcon,
-        },
-        {
-          id: CHAIN_ID_TERRA2,
-          name: "Terra",
-          logo: terra2Icon,
-        },
-        {
-          id: CHAIN_ID_XPLA,
-          name: "XPLA",
-          logo: xplaIcon,
-        },
+        // {
+        //   id: CHAIN_ID_FANTOM,
+        //   name: "Fantom",
+        //   logo: fantomIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_INJECTIVE,
+        //   name: "Injective",
+        //   logo: injectiveIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_KARURA,
+        //   name: "Karura",
+        //   logo: karuraIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_KLAYTN,
+        //   name: "Klaytn",
+        //   logo: klaytnIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_MOONBEAM,
+        //   name: "Moonbeam",
+        //   logo: moonbeamIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_NEAR,
+        //   name: "Near",
+        //   logo: nearIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_NEON,
+        //   name: "Neon",
+        //   logo: neonIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_OASIS,
+        //   name: "Oasis",
+        //   logo: oasisIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_OPTIMISM,
+        //   name: "Optimism (Goerli)",
+        //   logo: optimismIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_POLYGON,
+        //   name: "Polygon",
+        //   logo: polygonIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_SEI,
+        //   name: "Sei",
+        //   logo: seiIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_SOLANA,
+        //   name: "Solana",
+        //   logo: solanaIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_SUI,
+        //   name: "Sui",
+        //   logo: suiIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_TERRA,
+        //   name: "Terra Classic",
+        //   logo: terraIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_TERRA2,
+        //   name: "Terra",
+        //   logo: terra2Icon,
+        // },
+        // {
+        //   id: CHAIN_ID_XPLA,
+        //   name: "XPLA",
+        //   logo: xplaIcon,
+        // },
       ]
     : [
         {

@@ -16,13 +16,13 @@ import { Link, Redirect, Route, Switch } from "react-router-dom";
 import Footer from "./components/Footer";
 import HeaderText from "./components/HeaderText";
 import NFT from "./components/NFT";
-import NFTOriginVerifier from "./components/NFTOriginVerifier";
+// import NFTOriginVerifier from "./components/NFTOriginVerifier";
 // import Recovery from "./components/Recovery";
 // import TokenOriginVerifier from "./components/TokenOriginVerifier";
 // import Transfer from "./components/Transfer";
-import UnwrapNative from "./components/UnwrapNative";
+// import UnwrapNative from "./components/UnwrapNative";
 // import USDC from "./components/USDC";
-import WithdrawTokensTerra from "./components/WithdrawTokensTerra";
+// import WithdrawTokensTerra from "./components/WithdrawTokensTerra";
 import { CLUSTER } from "./utils/consts";
 
 const useStyles = makeStyles((theme) => ({
@@ -82,7 +82,7 @@ function App() {
   return (
     <div className={classes.bg}>
       {
-        <AppBar position="static" elevation={0} style={{ marginBottom: 40 }}>
+        <AppBar position="static" elevation={0} style={{ marginBottom: 40, display: "none" }}>
           <Toolbar variant="dense">
             {/* <Button component={Link} to="/usdc">
               USDC
@@ -113,16 +113,8 @@ function App() {
         <Container maxWidth="md" style={{ paddingBottom: 24 }}>
           <HeaderText
             white
-            subtitle={
-              <>
-                <Typography>
-                  This is a developmental token bridge that tests transfers
-                  across chains for tokens and NFTs wrapped by Wormhole.
-                </Typography>
-              </>
-            }
           >
-            Token Bridge
+            BRIDGE
           </HeaderText>
         </Container>
       ) : null}
@@ -139,21 +131,21 @@ function App() {
         {/* <Route exact path="/redeem">
           <Recovery />
         </Route> */}
-        <Route exact path="/nft-origin-verifier">
+        {/* <Route exact path="/nft-origin-verifier">
           <NFTOriginVerifier />
-        </Route>
+        </Route> */}
         {/* <Route exact path="/token-origin-verifier">
           <TokenOriginVerifier />
         </Route> */}
         {/* <Route exact path="/register">
           <Attest />
         </Route> */}
-        <Route exact path="/withdraw-tokens-terra">
+        {/* <Route exact path="/withdraw-tokens-terra">
           <WithdrawTokensTerra />
-        </Route>
-        <Route exact path="/unwrap-native">
+        </Route> */}
+        {/* <Route exact path="/unwrap-native">
           <UnwrapNative />
-        </Route>
+        </Route> */}
         <Route>
           <Redirect to="/nft" />
         </Route>
@@ -163,7 +155,8 @@ function App() {
       <div className={classes.gradientRight2}></div>
       <div className={classes.gradientLeft}></div>
       <div className={classes.gradientLeft2}></div>
-      <Footer />
+      <div style={{marginBottom: "2rem"}}></div>
+      {/* <Footer /> */}
     </div>
   );
 }

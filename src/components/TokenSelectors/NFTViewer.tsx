@@ -328,7 +328,7 @@ export default function NFTViewer({
     <img
       src={imageSrc}
       alt={metadata.nftName || ""}
-      style={{ maxWidth: "100%" }}
+      style={{ width: "100px" }}
       onLoad={onLoad}
       onError={onLoad}
     />
@@ -366,7 +366,21 @@ export default function NFTViewer({
       <div className={!isLoading ? classes.hidden : ""}>
         {/* <ViewerLoader /> */}
       </div>
-      <Card
+      <div style={{display: "flex", justifyContent: "flex-start", gap: "20px"}}>
+        <div>{media}</div>
+        <div>
+          <div>{metadata.nftName}</div>
+          <div>
+            {value.tokenId ? (
+                  <span onClick={copyTokenId}>
+                    {value.tokenId.length > 18
+                      ? `#${value.tokenId.substr(0, 16)}...`
+                      : `#${value.tokenId}`}
+                  </span>
+            ) : null}</div>
+        </div>
+      </div>
+      {/* <Card
         className={clsx(classes.card, {
           [classes.silverBorder]:
             chainId === CHAIN_ID_SOLANA ||
@@ -434,7 +448,7 @@ export default function NFTViewer({
             ) : null}
           </CardContent>
         </div>
-      </Card>
+      </Card> */}
     </>
   );
 }

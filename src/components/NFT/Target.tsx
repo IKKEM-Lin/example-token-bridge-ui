@@ -37,6 +37,7 @@ import KeyAndBalance from "../KeyAndBalance";
 import LowBalanceWarning from "../LowBalanceWarning";
 import StepDescription from "../StepDescription";
 import ChainWarningMessage from "../ChainWarningMessage";
+import SmartAddress from "../SmartAddress";
 
 const useStyles = makeStyles((theme) => ({
   transferField: {
@@ -94,6 +95,12 @@ function Target() {
   }, [targetChain]);
   return (
     <>
+      <div style={{display: "flex", justifyContent: "flex-start"}}>
+        <div>
+          2. Target Chain
+        </div>
+        <KeyAndBalance chainId={targetChain} />
+      </div>
       <StepDescription>Select a recipient chain and address.</StepDescription>
       <ChainSelect
         select
@@ -103,8 +110,14 @@ function Target() {
         onChange={handleTargetChange}
         chains={chains}
       />
-      <KeyAndBalance chainId={targetChain} />
-      <TextField
+      <div>
+        <span>Recipient Address</span>
+        <SmartAddress
+          chainId={targetChain}
+          address={readableTargetAddress}
+        />
+      </div>
+      {/* <TextField
         label="Recipient Address"
         fullWidth
         variant="outlined"
@@ -133,8 +146,8 @@ function Target() {
             />
           ) : null}
         </>
-      ) : null}
-      <Alert severity="info" variant="outlined" className={classes.alert}>
+      ) : null} */}
+      {/* <Alert severity="info" variant="outlined" className={classes.alert}>
         <Typography>
           You will have to pay transaction fees on{" "}
           {CHAINS_BY_ID[targetChain].name} to redeem your NFT.
@@ -142,7 +155,7 @@ function Target() {
         {isEVMChain(targetChain) && (
           <GasEstimateSummary methodType="nft" chainId={targetChain} />
         )}
-      </Alert>
+      </Alert> */}
       <LowBalanceWarning chainId={targetChain} />
       <ChainWarningMessage chainId={targetChain} />
       <ButtonWithLoader

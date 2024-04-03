@@ -21,37 +21,45 @@ export default function SourcePreview() {
     selectNFTSourceParsedTokenAccount
   );
 
-  const explainerContent =
-    sourceChain && sourceParsedTokenAccount ? (
-      <>
-        <span>You will transfer 1 NFT of</span>
-        <SmartAddress
-          chainId={sourceChain}
-          parsedTokenAccount={sourceParsedTokenAccount}
-        />
-        <span>from</span>
-        <SmartAddress
-          chainId={sourceChain}
-          address={sourceParsedTokenAccount?.publicKey}
-        />
-        <span>on {CHAINS_BY_ID[sourceChain].name}</span>
-      </>
-    ) : (
-      ""
-    );
+  // const explainerContent =
+  //   sourceChain && sourceParsedTokenAccount ? (
+  //     <>
+  //       <span>You will transfer 1 NFT of</span>
+  //       <SmartAddress
+  //         chainId={sourceChain}
+  //         parsedTokenAccount={sourceParsedTokenAccount}
+  //       />
+  //       <span>from</span>
+  //       <SmartAddress
+  //         chainId={sourceChain}
+  //         address={sourceParsedTokenAccount?.publicKey}
+  //       />
+  //       <span>on {CHAINS_BY_ID[sourceChain].name}</span>
+  //     </>
+  //   ) : (
+  //     ""
+  //   );
 
   return (
     <>
-      <Typography
+      {/* <Typography
         component="div"
         variant="subtitle2"
         className={classes.description}
       >
         {explainerContent}
-      </Typography>
-      {sourceParsedTokenAccount ? (
-        <NFTViewer value={sourceParsedTokenAccount} chainId={sourceChain} />
-      ) : null}
+      </Typography> */}
+      <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+        {sourceParsedTokenAccount ? (
+          <NFTViewer value={sourceParsedTokenAccount} chainId={sourceChain} />
+        ) : null}
+        <div>
+          <span>{CHAINS_BY_ID[sourceChain].name}</span><SmartAddress
+          chainId={sourceChain}
+          address={sourceParsedTokenAccount?.publicKey}
+        />
+        </div>
+      </div>
     </>
   );
 }

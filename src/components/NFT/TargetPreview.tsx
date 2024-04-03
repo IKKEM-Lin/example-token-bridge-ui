@@ -22,22 +22,22 @@ export default function TargetPreview() {
 
   const explainerContent =
     targetChain && targetAddressNative ? (
-      <>
-        <span>to</span>
+      <div style={{display: "flex", justifyContent: "space-between"}}>
+        <span>{CHAINS_BY_ID[targetChain].name}</span>
+        <div>
+        <span>
+        Recipient Address
+        </span>
         <SmartAddress chainId={targetChain} address={targetAddressNative} />
-        <span>on {CHAINS_BY_ID[targetChain].name}</span>
-      </>
+        </div>
+      </div>
     ) : (
       ""
     );
 
   return (
-    <Typography
-      component="div"
-      variant="subtitle2"
-      className={classes.description}
-    >
+    <>
       {explainerContent}
-    </Typography>
+    </>
   );
 }

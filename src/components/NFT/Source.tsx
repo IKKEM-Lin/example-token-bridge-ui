@@ -6,7 +6,7 @@ import { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import useIsWalletReady from "../../hooks/useIsWalletReady";
-import { incrementStep, setSourceChain } from "../../store/nftSlice";
+import { incrementStep, setSourceChain, setStep } from "../../store/nftSlice";
 import {
   selectNFTIsSourceComplete,
   selectNFTShouldLockFields,
@@ -55,11 +55,17 @@ function Source() {
   }, [sourceChain]);
   return (
     <>
+      <div style={{display: "flex", justifyContent: "flex-start"}}>
+        <div>
+          1. Source Chain
+        </div>
+        <KeyAndBalance chainId={sourceChain} />
+      </div>
       <StepDescription>
         <div style={{ display: "flex", alignItems: "center" }}>
           Select an NFT to send through the Wormhole NFT Bridge.
           <div style={{ flexGrow: 1 }} />
-          <div>
+          {/* <div>
             <Button
               component={Link}
               to="/nft-origin-verifier"
@@ -69,7 +75,7 @@ function Source() {
             >
               NFT Origin Verifier
             </Button>
-          </div>
+          </div> */}
         </div>
       </StepDescription>
       <ChainSelect
@@ -91,7 +97,9 @@ function Source() {
           Only NFTs with a supply of 1 are supported.
         </Alert>
       ) : null}
-      <KeyAndBalance chainId={sourceChain} />
+      <div>
+        Choose a NFT to Bridge
+      </div>
       {isReady || uiAmountString ? (
         <div className={classes.transferField}>
           <TokenSelector disabled={shouldLockFields} nft={true} />

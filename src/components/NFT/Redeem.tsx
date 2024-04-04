@@ -15,8 +15,13 @@ function Redeem() {
   const { isReady, statusMessage } = useIsWalletReady(targetChain);
   return (
     <>
+      <div style={{display: "flex", justifyContent: "flex-start"}}>
+        <div>
+          4. Redeem NFT
+        </div>
+        <KeyAndBalance chainId={targetChain} />
+      </div>
       <StepDescription>Receive the NFT on the target chain</StepDescription>
-      <KeyAndBalance chainId={targetChain} />
       {isTerraChain(targetChain) && (
         <TerraFeeDenomPicker disabled={disabled} chainId={targetChain} />
       )}

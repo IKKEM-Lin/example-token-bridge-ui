@@ -5,6 +5,7 @@ import {
   StepButton,
   StepContent,
   Stepper,
+  makeStyles,
 } from "@material-ui/core";
 import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,6 +29,60 @@ import Source from "./Source";
 import SourcePreview from "./SourcePreview";
 import Target from "./Target";
 import TargetPreview from "./TargetPreview";
+
+const useStyles = makeStyles((theme) => ({
+  steperWrapper: {
+    display: "flex",
+    justifyContent: "space-between",
+    gap: "5vw",
+  },
+  stepLeft: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "30px"
+  },
+  stepLeftBtn: {
+    padding: "10px",
+    border: "1px solid #ffffff32",
+    color: "#ffffff32",
+    fontSize: "12px",
+    height: "42px",
+    lineHeight: "20px",
+    whiteSpace: "nowrap",
+    borderRadius: "20px"
+  },
+  stepLeftNum: {
+    fontSize: "14px",
+    display: "inline-block",
+    border: "1px solid #ffffff32",
+    height: '20px',
+    width: '20px',
+    borderRadius: "50%",
+    color: "#fff",
+    textAlign: "center"
+  },
+  stepLeftBtnActive: {
+    padding: "10px",
+    border: "1px solid #ffffff32",
+    fontSize: "12px",
+    height: "42px",
+    lineHeight: "20px",
+    whiteSpace: "nowrap",
+    borderRadius: "20px"
+  },
+  stepLeftNumActive: {
+    fontSize: "14px",
+    display: "inline-block",
+    border: "1px solid c",
+    height: '20px',
+    width: '20px',
+    borderRadius: "50%",
+    background: "#11E095",
+    textAlign: "center",
+    color: "#000"
+  },
+  // stepLeftText: {},
+}));
 
 function NFT() {
   useCheckIfWormholeWrapped(true);
@@ -81,53 +136,73 @@ function NFT() {
       };
     }
   }, [preventNavigation]);
+  const classes = useStyles();
+  const activeBtnFn = (step: number) => activeStep >=step ? classes.stepLeftBtnActive : classes.stepLeftBtn
+  const activeBtnStyleFn = (step: number) => activeStep >=step ? {borderColor: "#11E095"} : {}
+  const activeNumFn = (step: number) => activeStep >=step ? classes.stepLeftNumActive : classes.stepLeftNum
   return (
-    <Container maxWidth="md">
-      <Stepper activeStep={activeStep} orientation="vertical">
-        <Step
-          expanded={activeStep >= 0}
-          disabled={preventNavigation || isRedeemComplete}
-        >
-          {/* <StepButton onClick={() => dispatch(setStep(0))} icon={null}>
+    <div className={classes.steperWrapper}>
+      <div className={classes.stepLeft}>
+        <div style={activeBtnStyleFn(0)} className={activeBtnFn(0)}>
+          <span className={activeNumFn(0)}>1</span> Source chain
+        </div>
+        <div style={activeBtnStyleFn(1)} className={activeBtnFn(1)}>
+          <span className={activeNumFn(1)}>2</span> Target chain
+        </div>
+        <div style={activeBtnStyleFn(2)} className={activeBtnFn(2)}>
+          <span className={activeNumFn(2)}>3</span> Transfer NFT
+        </div>
+        <div style={activeBtnStyleFn(3)} className={activeBtnFn(3)}>
+          <span className={activeNumFn(3)}>4</span> Redeem NFT
+        </div>
+      </div>
+      <Container maxWidth="md">
+        <Stepper activeStep={activeStep} orientation="vertical">
+          <Step
+            expanded={activeStep >= 0}
+            disabled={preventNavigation || isRedeemComplete}
+          >
+            {/* <StepButton onClick={() => dispatch(setStep(0))} icon={null}>
             1. Source
           </StepButton> */}
-          <StepContent>
-            {activeStep === 0 ? <Source /> : <SourcePreview />}
-          </StepContent>
-        </Step>
-        <Step
-          expanded={activeStep >= 1}
-          disabled={preventNavigation || isRedeemComplete || activeStep === 0}
-        >
-          {/* <StepButton onClick={() => dispatch(setStep(1))} icon={null}>
+            <StepContent>
+              {activeStep === 0 ? <Source /> : <SourcePreview />}
+            </StepContent>
+          </Step>
+          <Step
+            expanded={activeStep >= 1}
+            disabled={preventNavigation || isRedeemComplete || activeStep === 0}
+          >
+            {/* <StepButton onClick={() => dispatch(setStep(1))} icon={null}>
             2. Target
           </StepButton> */}
-          <StepContent>
-            {activeStep === 1 ? <Target /> : <TargetPreview />}
-          </StepContent>
-        </Step>
-        <Step expanded={activeStep >= 2} disabled={isSendComplete}>
-          {/* <StepButton disabled icon={null}>
+            <StepContent>
+              {activeStep === 1 ? <Target /> : <TargetPreview />}
+            </StepContent>
+          </Step>
+          <Step expanded={activeStep >= 2} disabled={isSendComplete}>
+            {/* <StepButton disabled icon={null}>
             3. Send NFT
           </StepButton> */}
-          <StepContent>
-            {activeStep === 2 ? <Send /> : <SendPreview />}
-          </StepContent>
-        </Step>
-        <Step expanded={activeStep >= 3} completed={isRedeemComplete}>
-          <StepButton
+            <StepContent>
+              {activeStep === 2 ? <Send /> : <SendPreview />}
+            </StepContent>
+          </Step>
+          <Step expanded={activeStep >= 3} completed={isRedeemComplete}>
+            {/* <StepButton
             onClick={() => dispatch(setStep(3))}
             disabled={!isSendComplete || isRedeemComplete}
             icon={null}
           >
             4. Redeem NFT
-          </StepButton>
-          <StepContent>
-            {isRedeemComplete ? <RedeemPreview /> : <Redeem />}
-          </StepContent>
-        </Step>
-      </Stepper>
-    </Container>
+          </StepButton> */}
+            <StepContent>
+              {isRedeemComplete ? <RedeemPreview /> : <Redeem />}
+            </StepContent>
+          </Step>
+        </Stepper>
+      </Container>
+    </div>
   );
 }
 
